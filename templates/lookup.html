@@ -9,20 +9,31 @@
         <div class="tile is-parent is-vertical is-4">
             <div class="tile is-child box">
                 <p class="subtitle">NS Records</p>
+                {% if return_NS == 'null' %}
+                <p>The domain could not be found</p>
+                {% else %}
                 {% for item in return_NS %}
                 <p>{{ item }}</p>
                 {% endfor %}
+                {% endif %}
             </div>
             <div class="tile is-child box">
                 <p class="subtitle">A Records</p>
+                {% if return_A == 'null' %}
+                <p>The domain could not be found</p>
+                {% else %}
                 {% for item in return_A %}
                 <p>{{ item }}</p>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
         <div class="tile is-parent is-vertical is-8">
             <div class="tile is-child box">
                 <p class="subtitle">MX Records</p>
+                {% if return_A == 'null' %}
+                <p>The domain could not be found</p>
+                {% else %}
                 <table class="table is-fullwidth is-narrow">
                     <thead>
                         <th>TTL</th>
@@ -37,12 +48,17 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                {% endif %}
             </div>
             <div class="tile is-child box">
                 <p class="subtitle">TXT Records</p>
+                {% if return_TXT == 'null' %}
+                <p>The domain could not be found</p>
+                {% else %}
                 {% for item in return_TXT %}
                 <ul><code>{{ item }}</code></ul>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
