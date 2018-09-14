@@ -5,6 +5,7 @@ import my_functions
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
+
 app.config.from_object(os.environ['APP_SETTINGS'])
 
 @app.route("/", methods=['GET'])
