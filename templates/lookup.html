@@ -23,9 +23,10 @@
                 <p>The domain could not be found</p>
                 {% else %}
                 {% for item in return_A %}
-                <p>{{ item }}</p>
+                <p>IP Address: <strong>{{ item }}</strong></p>
                 {% endfor %}
                 {% endif %}
+                <p>Country: <strong>{{ return_A_country }}</strong></p>
             </div>
         </div>
         <div class="tile is-parent is-vertical is-8">

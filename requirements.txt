@@ -4,9 +4,12 @@ dnspython==1.15.0
 Flask==0.10.1
 gunicorn==19.9.0
 idna==2.7
+ipwhois==1.0.0
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
+maxminddb==1.4.1
+maxminddb-geolite2==2018.703
 requests==2.19.1
 urllib3==1.23
 Werkzeug==0.14.1

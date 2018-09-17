@@ -1,86 +1,71 @@
 import dns.resolver
+from geolite2 import geolite2
 
-def dig_A(lookup_domain):
+def dig_record(lookup_domain, type):
+    resolver = dns.resolver.Resolver()
+    try:
+        query = resolver.query(lookup_domain, type)
+    except:
+        query = 'null'
+    
+    answer_list = []
+    if query == 'null':
+        answer = 'null'
+    else:
+        for item in query:
+            answer_string = ''
+            result_string = ''.join([str(item), answer_string])
+
+            if type == 'MX':
+                ttl, mx = result_string.split(' ')
+                append_tuple = [ttl, mx]
+                answer_list.append(append_tuple)
+            else:
+                answer_list.append(result_string)
+
+        answer = answer_list
+    return answer
+
+def dig_ptr(lookup_domain):
     resolver = dns.resolver.Resolver()
     try:
         query = resolver.query(lookup_domain, 'A')
     except:
         query = 'null'
+
+    answer_list = []
+
+    print(query)
     
-    answer_A_list = []
     if query == 'null':
         answer = 'null'
     else:
         for item in query:
-            answer_A = ''
-            result_string_A = ''.join([str(item), answer_A])
-
-            answer_A_list.append(result_string_A)
-
-        answer = answer_A_list
-    return answer
-
-def dig_MX(lookup_domain):  
-    resolver = dns.resolver.Resolver()
-    try:
-        query = resolver.query(lookup_domain, 'MX')
-    except:
-        query = 'null'
-
-    answer_MX_list = []
-
-    if query == 'null':
-        answer = 'null'
-    else:
-        for item in query:
-            answer_MX = ''
-            result_string_MX = ''.join([str(item), answer_MX])
-
-            ttl, mx = result_string_MX.split(' ')
-            append_tuple = [ttl, mx]
+            answer_string = ''
+            result_string = ''.join([str(item), answer_string])
             
-            answer_MX_list.append(append_tuple)
+            print(result_string)
+            #reverse_lookup = dns.reversename.from_address(item)
+            #answer_list.append(reverse_lookup)
 
-        answer = answer_MX_list
-    return answer
+        #answer = answer_list
 
-def dig_NS(lookup_domain):
-    resolver = dns.resolver.Resolver()
-    try:
-        query = resolver.query(lookup_domain, 'NS')
-    except:
-        query = 'null'
-    
-    answer_NS_list = []
+    return 'null'
 
-    if query == 'null':
-        answer = 'null'
-    else:
-        for item in query:
-            answer_NS = ''
-            result_string_NS = ''.join([str(item), answer_NS])
-            answer_NS_list.append(result_string_NS)
-            
-        answer = answer_NS_list
+def whois_ip(ip):
+    reader = geolite2.reader()
+    answer = reader.get(ip)
+    geolite2.close()
+
     return answer
 
 
-def dig_TXT(lookup_domain):
-    resolver = dns.resolver.Resolver()
-    try:
-        query = resolver.query(lookup_domain, 'TXT')
-    except:
-        query = 'null'
-    
-    answer_TXT_list = []
 
-    if query == 'null':
-        answer = 'null'
-    else:
-        for item in query:
-            answer_TXT = ''
-            result_string_TXT = ''.join([str(item), answer_TXT])
-            answer_TXT_list.append(result_string_TXT)
-            
-        answer = answer_TXT_list
-    return answer
+
+
+
+
+
+
+
+

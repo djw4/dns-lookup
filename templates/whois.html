@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}WhoIS IP{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class=tile is-ancestor">
+        <div class="tile is-parent is-vertical is-4">
+            <div class="tile is-child box">
+                <p class="subtitle">IP Address: {{ ip }}</p>
+                {% if ip_country != NoneType %}
+                <p>Country: {{ ip_country }}</p>
+                {% else %}
+                <p>No Country Found</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
