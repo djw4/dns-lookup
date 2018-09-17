@@ -7,7 +7,7 @@
 <div class="container">
     <div class=tile is-ancestor">
         <div class="tile is-parent is-vertical is-5">
-            <div class="card">
+            <div class="tile is-child card">
               <header class="card-header">
                 <p class="card-header-title">Nameserver Records<p>
                 <a href="#" class="card-header-icon" aria-label="more options"></a>
@@ -23,12 +23,10 @@
                 {% endif %}
                 </div>
               </div>
-              <footer class="card-footer">
-
-              </footer>
             </div>
 
-            <div class="card">
+            <!-- <div class="card" style="margin-top: 10px; display: inline-block !important;"> -->
+            <div class="tile is-child card">
               <header class="card-header">
                 <p class="card-header-title">A Records</p>
                 <a href="#" class="card-header-icon" aria-label="more options"></a>
@@ -66,12 +64,10 @@
                 {% endif %}
                 </div>
               </div>
-              <footer class="card-footer">
-              </footer>
             </div>
         </div>
         <div class="tile is-parent is-vertical is-7">
-            <div class="card">
+            <div class="tile is-child card">
               <header class="card-header">
                 <p class="card-header-title">MX Records</p>
                 <a href="#" class="card-header-icon" aria-label="more options"></a>
@@ -103,7 +99,7 @@
               </footer>
             </div>
 
-            <div class="card">
+            <div class="tile is-child card">
               <header class="card-header">
                 <p class="card-header-title">TXT Records</p>
                 <a href="#" class="card-header-icon" aria-label="more options"></a>
