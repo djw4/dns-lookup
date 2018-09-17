@@ -60,7 +60,15 @@ def whois_ip(ip):
     return answer
 
 
+def whois_ip_name(ip):
+    reader = geolite2.reader()
+    lookup = reader.get(ip)
+    geolite2.close()
 
+    results = lookup.lookup_rdap(depth=1)
+    answer = results.get("network", {}).get("name", {})
+    
+    return answer
 
 
 

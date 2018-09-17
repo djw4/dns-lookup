@@ -10,6 +10,7 @@ Jinja2==2.10
 MarkupSafe==1.0
 maxminddb==1.4.1
 maxminddb-geolite2==2018.703
+pprint==0.1
 requests==2.19.1
 urllib3==1.23
 Werkzeug==0.14.1

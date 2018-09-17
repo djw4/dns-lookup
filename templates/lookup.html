@@ -6,9 +6,14 @@
 {% block content %}
 <div class="container">
     <div class=tile is-ancestor">
-        <div class="tile is-parent is-vertical is-4">
-            <div class="tile is-child box">
-                <p class="subtitle">NS Records</p>
+        <div class="tile is-parent is-vertical is-5">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">Nameserver Records<p>
+                <a href="#" class="card-header-icon" aria-label="more options"></a>
+              </header>
+              <div class="card-content">
+                <div class="content">
                 {% if return_NS == 'null' %}
                 <p>The domain could not be found</p>
                 {% else %}
@@ -16,22 +21,63 @@
                 <p>{{ item }}</p>
                 {% endfor %}
                 {% endif %}
+                </div>
+              </div>
+              <footer class="card-footer">
+
+              </footer>
             </div>
-            <div class="tile is-child box">
-                <p class="subtitle">A Records</p>
+
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">A Records</p>
+                <a href="#" class="card-header-icon" aria-label="more options"></a>
+              </header>
+              <div class="card-content">
+                <div class="content">
                 {% if return_A == 'null' %}
                 <p>The domain could not be found</p>
                 {% else %}
-                {% for item in return_A %}
-                <p>IP Address: <strong>{{ item }}</strong></p>
+                {% for item in return_A_all %}
+                <div>
+                    <p>IP Address: {{ item.get("ip", {}) }}</p>
+                </div>
+                <div class="field is-grouped is-grouped-multiline">
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag">Owner</span>
+                            <span class="tag is-info is-rounded"">{{ item.get("ip_name") }}</span>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag">Country</span>
+                            <span class="tag is-info is-rounded"">{{ item.get("ip_country") }}</span>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <span class="tag">ASN</span>
+                            <span class="tag is-info is-rounded"">{{ item.get("ip_asn") }}</span>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
                 {% endif %}
-                <p>Country: <strong>{{ return_A_country }}</strong></p>
+                </div>
+              </div>
+              <footer class="card-footer">
+              </footer>
             </div>
         </div>
-        <div class="tile is-parent is-vertical is-8">
-            <div class="tile is-child box">
-                <p class="subtitle">MX Records</p>
+        <div class="tile is-parent is-vertical is-7">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">MX Records</p>
+                <a href="#" class="card-header-icon" aria-label="more options"></a>
+              </header>
+              <div class="card-content">
+                <div class="content">
                 {% if return_A == 'null' %}
                 <p>The domain could not be found</p>
                 {% else %}
@@ -50,9 +96,20 @@
                     </tbody>
                 </table>
                 {% endif %}
+                </div>
+              </div>
+              <footer class="card-footer">
+
+              </footer>
             </div>
-            <div class="tile is-child box">
-                <p class="subtitle">TXT Records</p>
+
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">TXT Records</p>
+                <a href="#" class="card-header-icon" aria-label="more options"></a>
+              </header>
+              <div class="card-content">
+                <div class="content">
                 {% if return_TXT == 'null' %}
                 <p>The domain could not be found</p>
                 {% else %}
@@ -60,7 +117,13 @@
                 <ul><code>{{ item }}</code></ul>
                 {% endfor %}
                 {% endif %}
+                </div>
+              </div>
+              <footer class="card-footer">
+
+              </footer>
             </div>
+
         </div>
     </div>
 </div>
