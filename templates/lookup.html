@@ -15,7 +15,7 @@
               <div class="card-content">
                 <div class="content">
                 {% if return_NS == 'null' %}
-                <p>The domain could not be found</p>
+                <div class="notification is-warning">NS records for the domain could not be found.</div>
                 {% else %}
                 {% for item in return_NS %}
                 <p>{{ item }}</p>
@@ -34,7 +34,7 @@
               <div class="card-content">
                 <div class="content">
                 {% if return_A == 'null' %}
-                <p>The domain could not be found</p>
+                <div class="notification is-warning">A records for the domain could not be found.</div>
                 {% else %}
                 {% for item in return_A_all %}
                 <div>
@@ -74,8 +74,8 @@
               </header>
               <div class="card-content">
                 <div class="content">
-                {% if return_A == 'null' %}
-                <p>The domain could not be found</p>
+                {% if return_MX == 'null' %}
+                <div class="notification is-warning">MX records for the domain could not be found.</div>
                 {% else %}
                 <table class="table is-fullwidth is-narrow">
                     <thead>
@@ -104,7 +104,7 @@
               <div class="card-content">
                 <div class="content">
                 {% if return_TXT == 'null' %}
-                <p>The domain could not be found</p>
+                <div class="notification is-warning">TXT records for the domain could not be found.</div>
                 {% else %}
                 {% for item in return_TXT %}
                 <ul><code>{{ item }}</code></ul>
