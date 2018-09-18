@@ -18,22 +18,27 @@ def index():
 
 @app.route("/lookup", methods=['POST', 'GET'])
 def lookup():
+    result_A_all = []
+    
     if request.method == 'POST':
         domain          = request.form['domain']
-        result_A        = my_functions.dig_record(domain, 'A')
+
+        try:
+            result_A = my_functions.dig_record(domain, 'A')
+        except:
+            result_A = None
+
+        #result_A        = my_functions.dig_record(domain, 'A')
         result_NS       = my_functions.dig_record(domain, 'NS')
         result_TXT      = my_functions.dig_record(domain, 'TXT')
         result_MX       = my_functions.dig_record(domain, 'MX')
         
-
-        result_A_all = []
-        if result_A != None:
+        if result_A is not 'null':
             for item in result_A:
                 output_dict = {}
                 ip_location     = my_functions.whois_ip(item)
-                if type(item) != None:
+                if item is not 'null':
                     result_A_IP_country = ip_location.get("country", {}).get("names", {}).get("en", {})
-                    
                 
                 w = IPWhois(item)
                 results = w.lookup_rdap(depth=1)
@@ -46,15 +51,16 @@ def lookup():
                 output_dict["ip_asn"]       = result_A_IP_asn
                 result_A_all.append(output_dict)
 
-
-        return render_template('lookup.html', 
-            domain = domain,
-            return_A_all = result_A_all,
-            return_MX = result_MX,
-            return_NS = result_NS,
-            return_TXT = result_TXT)
-            #return_A_IP_country = result_A_IP_country,
-            #return_A_IP_name = result_A_IP_name)
+            return render_template('lookup.html', 
+                domain = domain,
+                return_A_all = result_A_all,
+                return_MX = result_MX,
+                return_NS = result_NS,
+                return_TXT = result_TXT)
+                #return_A_IP_country = result_A_IP_country,
+                #return_A_IP_name = result_A_IP_name)
+        else:
+            return render_template('nxdomain.html', domain = domain)
 
     else:
         domain = 'null'

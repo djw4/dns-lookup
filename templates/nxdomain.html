@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}DNS Lookup - Not Found{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="columns is-mobile">
+      <div class="column is-half is-offset-one-quarter">
+            <div class="notification is-warning">
+                The domain name <strong>{{ domain }}</strong> could not be found.<br>
+                Please try again with a different domain name.
+            </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
