@@ -19,6 +19,7 @@
                 {% else %}
                 {% for item in return_NS %}
                 <p>{{ item }}</p>
+
                 {% endfor %}
                 {% endif %}
                 </div>
@@ -94,6 +95,13 @@
                 {% endif %}
                 </div>
               </div>
+                {% if return_problem_MX == True %}
+                    <footer class="card-footer">
+                    <div class="content" style="padding: 20px;">
+                        <div class="notification is-warning">We've detected a problem with your mail configuration, please re-check your MX records.</div>
+                    </div>
+                </footer>
+                {% endif %}
             </div>
 
             <div class="tile is-child card">
@@ -112,6 +120,9 @@
                 {% endif %}
                 </div>
               </div>
+              {% if return_TXT != 'null' %}
+
+              {% endif %}
             </div>
 
         </div>

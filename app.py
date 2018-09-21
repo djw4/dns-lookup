@@ -50,15 +50,17 @@ def lookup():
                 output_dict["ip_country"]   = result_A_IP_country
                 output_dict["ip_asn"]       = result_A_IP_asn
                 result_A_all.append(output_dict)
+            
+            check_result_MX = my_functions.run_dns_checks(result_MX, 'MX')
 
             return render_template('lookup.html', 
                 domain = domain,
                 return_A_all = result_A_all,
                 return_MX = result_MX,
                 return_NS = result_NS,
-                return_TXT = result_TXT)
-                #return_A_IP_country = result_A_IP_country,
-                #return_A_IP_name = result_A_IP_name)
+                return_TXT = result_TXT,
+                return_problem_MX = check_result_MX)
+
         else:
             return render_template('nxdomain.html', domain = domain)
 
