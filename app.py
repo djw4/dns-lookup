@@ -13,7 +13,6 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 @app.route("/", methods=['GET'])
 def index():
     domain = ''
-    print(os.environ['DNS_RESOLVER'])
     return render_template('index.html', domain = domain)
 
 @app.route("/lookup", methods=['POST', 'GET'])
