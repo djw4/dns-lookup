@@ -1,8 +1,11 @@
-import dns.resolver
+import dns.resolver, os
 from geolite2 import geolite2
 
+resolver = dns.resolver.Resolver(configure=False)
+resolver.nameservers = ['1.1.1.1', '1.0.0.1']
+
+
 def dig_record(lookup_domain, type):
-    resolver = dns.resolver.Resolver()
     try:
         query = resolver.query(lookup_domain, type)
     except:
@@ -27,7 +30,6 @@ def dig_record(lookup_domain, type):
     return answer
 
 def dig_ptr(lookup_domain):
-    resolver = dns.resolver.Resolver()
     try:
         query = resolver.query(lookup_domain, 'A')
     except:
