@@ -2,4 +2,8 @@
 ./__pycache__
 **/__pycache__/**
 **/.DS_Store
+<<<<<<< HEAD
 ./venv
+=======
+./__pycache__
+>>>>>>> dee98e69a61e6737fcc59eb4195df1b5379b099c
