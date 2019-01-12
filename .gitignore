@@ -1,5 +1,5 @@
 **/lib/*/site-packages/**
-./__pycache__
+__pycache__/
 **/__pycache__/**
 **/.DS_Store
-./venv
+./venv/
