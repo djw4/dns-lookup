@@ -31,7 +31,7 @@ jobs:
         enabled: true
     working_directory: ~/repo
     environment:
-      HEROKU_APP: $HEROKU_APP
+      HEROKU_APP: "limitless-lowlands-54325"
     steps:
       - checkout
       - run:
