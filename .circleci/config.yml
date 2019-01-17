@@ -1,26 +1,12 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.6.1
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
     working_directory: ~/repo
-
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "requirements.txt" }}
@@ -38,32 +24,29 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
-        
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
-      #- run:
-      #    name: run tests
-      #    command: |
-      #      . venv/bin/activate
-      #      python manage.py test
-      #
-      #- store_artifacts:
-      #    path: test-reports
-      #    destination: test-reports
-          
-  deployment:
-    staging:
-      branch: master
-      codedeploy:
-        webpagetest_space:
-          application_root: /
-          region: ap-southeast-2
-          revision_location:
-            revision_type: S3
-            s3_location:
-              bucket: my-bucket
-              key_pattern: webpagetest_space-{BRANCH}-{SHORT_COMMIT}
-          deployment_group: my-deployment-group
+
+
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/repo
+    environment:
+      HEROKU_APP: "limitless-lowlands-54325"
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP.git master
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          # filters:
+          #   branches:
+          #     only: sequential-branch-filter
