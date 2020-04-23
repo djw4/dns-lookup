@@ -7,7 +7,7 @@ install:
 - make install
 
 script:
-- pytest
+- make test
 
 # deploy:
 #   provider: heroku
