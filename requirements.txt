@@ -4,7 +4,7 @@ dnspython==1.15.0
 Flask==0.10.1
 gunicorn==19.9.0
 idna==2.7
-ipwhois==1.0.0
+ipwhois
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe

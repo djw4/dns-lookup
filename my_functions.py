@@ -1,5 +1,6 @@
 import dns.resolver, os
 from geolite2 import geolite2
+from ipwhois import IPWhois
 
 resolver = dns.resolver.Resolver(configure=False)
 resolver.nameservers = ['1.1.1.1', '1.0.0.1']
@@ -63,14 +64,9 @@ def whois_ip(ip):
 
 
 def whois_ip_name(ip):
-    reader = geolite2.reader()
-    lookup = reader.get(ip)
-    geolite2.close()
-
-    results = lookup.lookup_rdap(depth=1)
-    answer = results.get("network", {}).get("name", {})
-    
-    return answer
+    obj = IPWhois(ip)
+    results = obj.lookup_rdap(depth=1)
+    return results['network']['name']
 
 def run_dns_checks(lookup_result, result_type):
     if result_type is 'MX' and isinstance(lookup_result, list):
