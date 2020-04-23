@@ -1,16 +1,13 @@
 language: python
-
+dist: xenial
 python:
 - '3.6'
-
 install:
 - make install
-
 script:
 - make test
-
 deploy:
   provider: heroku
   api_key:
-    secure: rOoclhiuTeuOowpsipqL1M5/NEmrMZ6WwJiMhOSGnlkUApLdxGzZC0LGWh2O5kVFVFa1vu0ClUs89JQ/CCEtoWmTVz8bpTd4GSRC5NlPIfMP1qRa3vcH0q63MSVqr9pPQGqBBTnU8UwKlCmEvQH2rZG+xYbcGYcAWPHumThyIajqLLXViGITLeYJrgArDcCP3Sa/nph6P4MsJbYx73V7P1GFv/cUW1BoMQ/CCZFOIOJyxae4pLziwSA2O2IywAIIPt3J1tzEx93lOPWrFQIuu1GSoJFZtoj71sD/VXwLlF+irxjOxDh4YycFQkmz6MT+gOifG0GoSUZlDrHiw+kAblzxCYhikQgT3SGLpKz977wgjW7qybwW1Tmf1NgAOxHms82ZxVWgnQNLjKt4mzRy6+/rxrvutkKNY2zGjefLTRY0vVuzKGO4rZbp5XHbwI9Fp3DCLdsQItM/aWCaZwznRAWIMgSFzVhw/amHlvOVfhTtu5ajmPougzFFRv8LGeDCFEY9MYpsui6UzUFEAZNJmQ7P/tGkOAq0DvTS+3NuZkmugJMQCN/6ew4ce6gHmfOqid5Keco9trd7YloOUYeljAT90XBFKxvcGzRe2Nv6/DWEb0lQC5IpwEFV7zPVel334B1X9sXD08xBzRhawvKb5lo5hC0RdFGQ27Bst55pMss=
+    secure: $HEROKU_API_KEY
   app: limitless-lowlands-54325
