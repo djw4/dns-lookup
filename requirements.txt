@@ -7,9 +7,9 @@ idna==2.7
 ipwhois==1.0.0
 itsdangerous==0.24
 Jinja2==2.10
-MarkupSafe==1.0
-maxminddb==1.4.1
-maxminddb-geolite2==2018.703
+MarkupSafe
+maxminddb
+maxminddb-geolite2
 pprint==0.1
 requests==2.19.1
 urllib3==1.23
