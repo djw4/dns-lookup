@@ -7,3 +7,4 @@ virt/
 .pytest_cache/
 test-summary.xml
 .vscode/
+temp/
