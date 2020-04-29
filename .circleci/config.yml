@@ -22,7 +22,7 @@ jobs:
           command: make test 
       - store_test_results:
           path: temp
-      - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+      - store_artifacts:
           path: test
           destination: tr1
 
@@ -47,6 +47,3 @@ workflows:
       - deploy:
           requires:
             - build
-          # filters:
-          #   branches:
-          #     only: sequential-branch-filter
