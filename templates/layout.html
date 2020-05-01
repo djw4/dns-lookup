@@ -3,20 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
+    <link href="{{ url_for('static', filename='bulma.min.css') }}" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     {% block head %}
     <title>DNS Lookup</title>
     {% endblock %}
   </head>
-  <body>
-    <section class="hero is-primary">
+  <body class="font-body bg-body text-body">
+    <div class="container mx-auto px-4">
+      <section class="p-4">
+        <div class="flex flex-wrap -mx-8">
+          <div class="md:w-1/3 py-4 px-8 mb-4 md:mb-0">
+            <h2 class="text-2xl font-heading text-teal-500 font-semibold"><a href="/" class="hover:none">DNS Lookup</a></h3>
+            <p class="my-4 leading-relaxed text-teal-400">{{ domain }}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
           <h1 class="title"><a href="/">DNS Lookup</a></h1>
           <h2 class="subtitle">{{ domain }}</h2>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="section">
             {% block content %}
             {% endblock %}
