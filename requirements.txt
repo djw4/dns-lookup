@@ -13,5 +13,5 @@ maxminddb==1.5.2
 maxminddb-geolite2==2018.703
 pprint==0.1
 requests==2.23.0
-urllib3==1.25.9
+urllib3==1.26.5
 Werkzeug==1.0.1
