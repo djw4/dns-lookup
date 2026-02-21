@@ -9,7 +9,7 @@ ipwhois==1.1.0
 itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
-maxminddb==1.5.2
+maxminddb==1.5.4
 maxminddb-geolite2==2018.703
 pprint==0.1
 requests==2.23.0
