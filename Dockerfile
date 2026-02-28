@@ -1,4 +1,4 @@
-FROM circleci/python:3.6
+FROM circleci/python:3.10
 MAINTAINER Daniel W &amp;lt;github@danieljw.net&amp;gt;
 
 WORKDIR /app
