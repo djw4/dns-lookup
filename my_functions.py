@@ -1,5 +1,4 @@
-import dns.resolver, os
-from geolite2 import geolite2
+import dns.resolver, os, requests
 from ipwhois import IPWhois
 
 resolver = dns.resolver.Resolver(configure=False)
@@ -8,7 +7,7 @@ resolver.nameservers = ['1.1.1.1', '1.0.0.1']
 
 def dig_record(lookup_domain, type):
     try:
-        query = resolver.query(lookup_domain, type)
+        query = resolver.resolve(lookup_domain, type)
     except:
         query = 'null'
     
@@ -32,7 +31,7 @@ def dig_record(lookup_domain, type):
 
 def dig_ptr(lookup_domain):
     try:
-        query = resolver.query(lookup_domain, 'A')
+        query = resolver.resolve(lookup_domain, 'A')
     except:
         query = 'null'
 
@@ -56,11 +55,16 @@ def dig_ptr(lookup_domain):
     return 'null'
 
 def whois_ip(ip):
-    reader = geolite2.reader()
-    answer = reader.get(ip)
-    geolite2.close()
-
-    return answer
+    # ip-api.com free tier only supports HTTP (HTTPS requires a paid plan)
+    try:
+        response = requests.get(f"http://ip-api.com/json/{ip}", timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        if data.get("status") == "success":
+            return {"country": {"names": {"en": data.get("country", "")}}}
+        return None
+    except Exception:
+        return None
 
 
 def whois_ip_name(ip):
@@ -69,7 +73,7 @@ def whois_ip_name(ip):
     return results['network']['name']
 
 def run_dns_checks(lookup_result, result_type):
-    if result_type is 'MX' and isinstance(lookup_result, list):
+    if result_type == 'MX' and isinstance(lookup_result, list):
         #If type is MX then lookup_result is a list,
         #so we need to make a loop
         problem_detected = ''

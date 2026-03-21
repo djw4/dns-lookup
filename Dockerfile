@@ -1,10 +1,10 @@
-FROM circleci/python:3.6
-MAINTAINER Daniel W &amp;lt;github@danieljw.net&amp;gt;
+FROM python:3.13-slim
+LABEL maintainer="Daniel W <github@danieljw.net>"
 
 WORKDIR /app
 
 COPY . .
-RUN pip install -r requirements.txt --user
+RUN pip install --no-cache-dir -r requirements.txt
 
 ENV APP_SETTINGS="config.ProductionConfig"
 

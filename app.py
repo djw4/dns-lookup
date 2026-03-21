@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for
-from geolite2 import geolite2
 from ipwhois import IPWhois
 import os, json, requests, urllib3, zlib, dns.resolver, sqlite3
 import my_functions
@@ -32,11 +31,11 @@ def lookup():
         result_TXT      = my_functions.dig_record(domain, 'TXT')
         result_MX       = my_functions.dig_record(domain, 'MX')
         
-        if result_A is not 'null':
+        if result_A != 'null':
             for item in result_A:
                 output_dict = {}
                 ip_location     = my_functions.whois_ip(item)
-                if item is not 'null':
+                if item != 'null':
                     result_A_IP_country = ip_location.get("country", {}).get("names", {}).get("en", {})
                 
                 w = IPWhois(item)
